@@ -18,7 +18,7 @@ export function Canvas() {
     const images: HTMLImageElement[] = [];
     let ball = { frame: 0 };
 
-    let imagesLoadedCount = 0; // Track the number of loaded images
+    let imagesLoadedCount = 0;
 
     for (let i = 0; i < frameCount; i++) {
       const img = new Image();
@@ -26,24 +26,22 @@ export function Canvas() {
       img.onload = () => {
         imagesLoadedCount++;
         if (imagesLoadedCount === frameCount) {
-          setImagesLoaded(true); // All images have loaded
+          setImagesLoaded(true);
         }
       };
       images.push(img);
     }
 
     if (imagesLoaded) {
-      // Animation setup should only happen after all images are loaded
-
-      // Your animation setup logic
       gsap.to(ball, {
         frame: frameCount - 1,
         snap: 'frame',
-        ease: 'none',
+        ease: 'none', // Increment normally
         scrollTrigger: {
-          scrub: true,
-          pin: 'canvas',
+          scrub: true, // Animate based on scroll
+          pin: 'canvas', // Hold image until scroll is complete
           end: '500%',
+          // markers: true //! Shows the start and end
         },
         onUpdate: render,
       });
@@ -69,7 +67,7 @@ export function Canvas() {
 
     function render() {
       context.canvas.width = images[0].width;
-      context.canvas.height = images[0].height;
+      context.canvas.height = images[0].height; // Equates image width and height to canvas for responsive rendering
 
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(images[ball.frame], 0, 0);
