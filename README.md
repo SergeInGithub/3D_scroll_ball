@@ -6,7 +6,7 @@ An an app with 3D modeled graphics, motions & models created with Blender
 
 ## 🧬 Live Site
 
-___[Libe Link](https://scroll-ball.vercel.app/)___
+___[Live Link](https://scroll-ball.vercel.app/)___
 
 ## 🔮 Tech Stack
 
